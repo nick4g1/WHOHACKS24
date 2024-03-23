@@ -40,12 +40,13 @@ def selection_sort(arr, canvas):
     for num in range(size):
         min = num
         for i in range(num + 1, size):
-            if x[i] < x[min]:
+            if arr[i] < arr[min]:
                 min = i
-        x[num], x[min] = x[min], x[num]
+        arr[num], arr[min] = arr[min], arr[num]
         VisualizeArray(arr, canvas)
         window.update_idletasks()
         window.after(10)
+    
 SelButton = Button(canvas, text="Selection Sort", command=lambda:window.after(100,selection_sort,list(original_x), canvas))
 SelButton.place(x=170, y=50)
    
