@@ -1,8 +1,9 @@
 import tkinter as tk
 import sys
+from input import *
 
 #File IO
-input = open(sys.argv[1], "r", encoding="utf-8").read()
+readInto(sys.argv[1])
 
 
 #thomas was here
