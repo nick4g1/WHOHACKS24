@@ -52,7 +52,7 @@ def reset(canvas):
 #buttons
 BubButton = Button(canvas, text="Bubble Sort", command=lambda: start_bubble_sort(original_x_keys, original_x_values, canvas))
 BubButton.place(x=50, y=50)
-Reset = Button(canvas, text="Reset", command=lambda:window.after(100,reset, canvas))
+Reset = Button(canvas, text="Reset", command=lambda: start_reset(canvas))
 Reset.place(x=125, y=50)
 # sorts key and val arrays with selection sort
 def selection_sort(keyArr, valArr, canvas):
