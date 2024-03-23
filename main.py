@@ -34,7 +34,20 @@ BubButton.place(x=50, y=50)
 Reset = Button(canvas, text="Reset", command=lambda:window.after(100,reset, canvas))
 Reset.place(x=125, y=50)
 
-
+def selection_sort(arr, canvas):
+    VisualizeArray(arr, canvas)
+    size = len(arr)
+    for num in range(size):
+        min = num
+        for i in range(num + 1, size):
+            if x[i] < x[min]:
+                min = i
+        x[num], x[min] = x[min], x[num]
+        VisualizeArray(arr, canvas)
+        window.update_idletasks()
+        window.after(10)
+SelButton = Button(canvas, text="Selection Sort", command=lambda:window.after(100,selection_sort,list(original_x), canvas))
+SelButton.place(x=170, y=50)
    
 def VisualizeArray(arr, canvas):
     window.update_idletasks
