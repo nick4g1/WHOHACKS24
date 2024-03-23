@@ -33,6 +33,8 @@ def bubble_sort(keyArr, valArr, canvas):
                 window.after(10)
 def reset(canvas):
     x = readInto(sys.argv[1])
+    original_x_keys = list(x.keys())
+    original_x_values = list(x.values())
     VisualizeArray(original_x_values,canvas)
 BubButton = Button(canvas, text="Bubble Sort", command=lambda:window.after(100,bubble_sort,original_x_keys, original_x_values, canvas))
 BubButton.place(x=50, y=50)
