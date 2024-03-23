@@ -25,6 +25,7 @@ def VisualizeArray(x):
 
 
 def Bubble(x):
+    VisualizeArray(x)
     size = len(x)
     for num in range(size - 1):
         for i in range(0, size - num - 1):
@@ -35,7 +36,7 @@ def Bubble(x):
                 window.after(100)   
 
 #VisualizeArray(x)   
-BubButton = Button(window, text="Bubble Sort", command=window.after(100,Bubble,x))
+BubButton = Button(window, text="Bubble Sort", command=lambda:window.after(100,Bubble,x))
 BubButton.place(x=500, y=500)
 
 window.mainloop()    
