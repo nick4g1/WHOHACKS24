@@ -10,16 +10,17 @@ x = readInto(sys.argv[1])
 #x = [10,20,30,40,50]
 #thomas was here
 window = tk.Tk()
-canvas = Canvas(window, width=500,height=500)
-canvas.pack()
-def VisualizeArray(x):
-    count = 0;
-    for element in x:
-        rect = canvas.create_rectangle(0 + (20*count),100 - element,20+(20*count),100, fill='black')
-        count = count + 1
-window.geometry("1000x600")
+window.geometry("1366x768")
 greeting = tk.Label(text="Algorithm Visualizer")
 greeting.pack()
+canvas = Canvas(window, width=1366,height=768,bg="teal")
+canvas.pack()
+def VisualizeArray(x):
+    width = 1366/len(x)
+    count = 0;
+    for element in x:
+        rect = canvas.create_rectangle(0 + (width*count),500 - (3*element),width*(count+1),500, fill='black')
+        count = count + 1
 VisualizeArray(x)
 window.mainloop()
 
