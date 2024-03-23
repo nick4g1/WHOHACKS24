@@ -56,7 +56,7 @@ def VisualizeArray(arr, canvas):
     width = 1366/len(arr)
     count = 0;
     for element in arr:
-        rect = canvas.create_rectangle(0 + (width*count),500 - (3*element),width*(count+1),500, fill='black')
+        rect = canvas.create_rectangle(0 + (width*count),500 - (1*element),width*(count+1),500, fill='black')
         count = count + 1
 
 #VisualizeArray(x)   
