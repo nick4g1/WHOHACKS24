@@ -7,6 +7,7 @@ from tkinter import *
 #File IO
 global x
 x = readInto(sys.argv[1])
+print(x)
 global original_x
 original_x = list(x)
 #thomas was here
@@ -32,8 +33,7 @@ def reset(canvas):
 BubButton = Button(canvas, text="Bubble Sort", command=lambda:window.after(100,bubble_sort,list(original_x), canvas))
 BubButton.place(x=50, y=50)
 Reset = Button(canvas, text="Reset", command=lambda:window.after(100,reset, canvas))
-Reset.place(x=210, y=50)
-
+Reset.place(x=125, y=50)
 def selection_sort(arr, canvas):
     VisualizeArray(arr, canvas)
     size = len(arr)
@@ -48,7 +48,7 @@ def selection_sort(arr, canvas):
         window.after(10)
     
 SelButton = Button(canvas, text="Selection Sort", command=lambda:window.after(100,selection_sort,list(original_x), canvas))
-SelButton.place(x=125, y=50)
+SelButton.place(x=170, y=50)
    
 def VisualizeArray(arr, canvas):
     window.update_idletasks
