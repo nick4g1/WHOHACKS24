@@ -1,6 +1,10 @@
 import tkinter as tk
 import sys
+from input import *
 
+
+#File IO
+readInto(sys.argv[1])
 
 
 #thomas was here
