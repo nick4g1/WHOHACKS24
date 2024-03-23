@@ -57,7 +57,10 @@ def VisualizeArray(arr, canvas):
     count = 0
     print(arr)
     for val in arr.values():
-        color = "#" + str(val)
+        color = hex(val)
+        color = color[2:7]
+        color = "#" + color
+        print(color)
         rect = canvas.create_rectangle(0 + (width*count),500 - (100),width*(count+1),500, fill=color)
         count = count + 1
 
