@@ -34,8 +34,10 @@ def Bubble(x):
                 window.update_idletasks()
                 window.after(100)   
 
-VisualizeArray(x)                      
-window.after(100,Bubble,x)
+#VisualizeArray(x)   
+BubButton = Button(window, text="Bubble Sort", command=window.after(100,Bubble,x))
+BubButton.place(x=500, y=500)
+
 window.mainloop()    
 
 
