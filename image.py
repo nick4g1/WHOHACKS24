@@ -1,7 +1,7 @@
-import PIL.Image
+from PIL import Image
 import numpy as np
 
-img = PIL.Image.open('cabbage.jpg')
+img = Image.open('cabbage.jpg')
 
 arr = np.array(img)
 
@@ -10,8 +10,10 @@ arr = np.array(img)
 scale_factor = 0.01
 new_width = int(arr.shape[1] * scale_factor)
 new_height = int(arr.shape[0] * scale_factor)
-arr = np.array(PIL.Image.fromarray(arr).resize((new_width, new_height)))
+arr = np.array(Image.fromarray(arr).resize((new_width, new_height)))
 
+print(new_width)
+print(new_height)
 
 
 def rgb_to_hex(rgb):
