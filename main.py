@@ -16,6 +16,7 @@ greeting.pack()
 canvas = Canvas(window, width=1366,height=768,bg="teal")
 canvas.pack()
 def VisualizeArray(x):
+    canvas.delete("all")
     width = 1366/len(x)
     count = 0;
     for element in x:
