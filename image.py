@@ -15,7 +15,7 @@ arr = np.array(PIL.Image.fromarray(arr).resize((new_width, new_height)))
 
 
 def rgb_to_hex(rgb):
-    return '{0:02x}{1:02x}{2:02x}'.format(int(rgb[0]), int(rgb[1]), int(rgb[2]))
+    return '0x{0:02x}{1:02x}{2:02x}'.format(int(rgb[0]), int(rgb[1]), int(rgb[2]))
 
 reshaped_array = arr.reshape(-1, arr.shape[-1])
 with open('testImage.txt', 'w') as f:
