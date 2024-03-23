@@ -6,7 +6,7 @@ from tkinter import *
 
 #File IO
 x = readInto(sys.argv[1])
-
+copy = x
 #x = [10,20,30,40,50]
 #thomas was here
 window = tk.Tk()
@@ -15,30 +15,34 @@ greeting = tk.Label(text="Algorithm Visualizer")
 greeting.pack()
 canvas = Canvas(window, width=1366,height=768,bg="teal")
 canvas.pack()
-def VisualizeArray(x):
-    canvas.delete("all")
-    width = 1366/len(x)
-    count = 0;
-    for element in x:
-        rect = canvas.create_rectangle(0 + (width*count),500 - (3*element),width*(count+1),500, fill='black')
-        count = count + 1
-
-
-def Bubble(x):
-    VisualizeArray(x)
-    size = len(x)
+def bubble_sort(copy, canvas):
+    VisualizeArray(copy, canvas)
+    size = len(copy)
     for num in range(size - 1):
         for i in range(0, size - num - 1):
             if x[i] > x[i + 1]:
                 x[i], x[i + 1] = x[i + 1], x[i]
-                VisualizeArray(x)
+                VisualizeArray(copy, canvas)
                 window.update_idletasks()
-                window.after(100)   
+                window.after(10)
+    copy = x
+BubButton = Button(canvas, text="Bubble Sort", command=lambda:window.after(100,bubble_sort,copy, canvas))
+BubButton.place(x=50, y=50)
+Reset = Button(canvas, text="Reset", command=lambda:window.after(100,VisualizeArray,x, canvas))
+Reset.place(x=125, y=50)
+
+
+   
+def VisualizeArray(copy, canvas):
+    window.update_idletasks
+    canvas.delete("all")
+    width = 1366/len(copy)
+    count = 0;
+    for element in copy:
+        rect = canvas.create_rectangle(0 + (width*count),500 - (3*element),width*(count+1),500, fill='black')
+        count = count + 1
 
 #VisualizeArray(x)   
-BubButton = Button(window, text="Bubble Sort", command=lambda:window.after(100,Bubble,x))
-BubButton.place(x=500, y=500)
-
 window.mainloop()    
 
 
