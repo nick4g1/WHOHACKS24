@@ -44,6 +44,8 @@ def bubble_sort(keyArr, valArr, canvas):
 def reset(canvas):
     if after_id:
         window.after_cancel(after_id)
+    x = readInto(sys.argv[1])
+    original_x = dict(x)
     original_x_keys = list(x.keys())
     original_x_values = list(x.values())
     VisualizeArray(original_x_values,canvas)
