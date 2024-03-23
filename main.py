@@ -7,9 +7,9 @@ from tkinter import *
 #File IO
 global x
 x = readInto(sys.argv[1])
-print(x)
+#print(x)
 global original_x
-original_x = list(x)
+original_x = dict(x)
 #thomas was here
 window = tk.Tk()
 window.geometry("1366x768")
@@ -30,7 +30,7 @@ def bubble_sort(arr, canvas):
 def reset(canvas):
     x = readInto(sys.argv[1])
     VisualizeArray(x,canvas)
-BubButton = Button(canvas, text="Bubble Sort", command=lambda:window.after(100,bubble_sort,list(original_x), canvas))
+BubButton = Button(canvas, text="Bubble Sort", command=lambda:window.after(100,bubble_sort,dict(original_x), canvas))
 BubButton.place(x=50, y=50)
 Reset = Button(canvas, text="Reset", command=lambda:window.after(100,reset, canvas))
 Reset.place(x=125, y=50)
@@ -54,9 +54,11 @@ def VisualizeArray(arr, canvas):
     window.update_idletasks
     canvas.delete("all")
     width = 1366/len(arr)
-    count = 0;
-    for element in arr:
-        rect = canvas.create_rectangle(0 + (width*count),500 - (1*element),width*(count+1),500, fill='black')
+    count = 0
+    print(arr)
+    for val in arr.values():
+        color = "#" + str(val)
+        rect = canvas.create_rectangle(0 + (width*count),500 - (100),width*(count+1),500, fill=color)
         count = count + 1
 
 #VisualizeArray(x)   
