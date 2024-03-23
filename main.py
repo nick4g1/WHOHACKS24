@@ -5,9 +5,10 @@ from tkinter import *
 
 
 #File IO
+global x
 x = readInto(sys.argv[1])
-copy = list(x)
-#x = [10,20,30,40,50]
+global original_x
+original_x = list(x)
 #thomas was here
 window = tk.Tk()
 window.geometry("1366x768")
@@ -25,10 +26,12 @@ def bubble_sort(arr, canvas):
                 VisualizeArray(arr, canvas)
                 window.update_idletasks()
                 window.after(10)
-    copy = list(x)
-BubButton = Button(canvas, text="Bubble Sort", command=lambda:window.after(100,bubble_sort,copy, canvas))
+def reset(canvas):
+    x = readInto(sys.argv[1])
+    VisualizeArray(x,canvas)
+BubButton = Button(canvas, text="Bubble Sort", command=lambda:window.after(100,bubble_sort,list(original_x), canvas))
 BubButton.place(x=50, y=50)
-Reset = Button(canvas, text="Reset", command=lambda:window.after(100,VisualizeArray,x, canvas))
+Reset = Button(canvas, text="Reset", command=lambda:window.after(100,reset, canvas))
 Reset.place(x=125, y=50)
 
 
