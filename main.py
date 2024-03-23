@@ -12,7 +12,8 @@ global original_x, original_x_keys, original_x_values
 original_x = dict(x)
 original_x_keys = list(x.keys())
 original_x_values = list(x.values())
-
+global after_id
+after_id = None
 #thomas was here
 window = tk.Tk()
 window.geometry("1366x768")
@@ -20,6 +21,14 @@ greeting = tk.Label(text="Algorithm Visualizer")
 greeting.pack()
 canvas = Canvas(window, width=1366,height=768,bg="teal")
 canvas.pack()
+#start methods for after_id
+def start_bubble_sort(keyArr, valArr, canvas):
+    after_id = window.after(100, bubble_sort, keyArr, valArr, canvas)
+def start_selection_sort(keyArr, valArr, canvas):
+    after_id = window.after(100, selection_sort, keyArr, valArr, canvas)
+def start_reset(canvas):
+    reset(canvas)
+#sorts the key and value arrays
 def bubble_sort(keyArr, valArr, canvas):
     VisualizeArray(valArr, canvas)
     size = len(valArr)
@@ -30,16 +39,22 @@ def bubble_sort(keyArr, valArr, canvas):
                 valArr[i], valArr[i + 1] = valArr[i + 1], valArr[i]
                 VisualizeArray(valArr, canvas)
                 window.update_idletasks()
-                window.after(10)
+                window.after(1)
+#resets canvas
 def reset(canvas):
+    if after_id:
+        window.after_cancel(after_id)
     x = readInto(sys.argv[1])
+    original_x = dict(x)
     original_x_keys = list(x.keys())
     original_x_values = list(x.values())
     VisualizeArray(original_x_values,canvas)
-BubButton = Button(canvas, text="Bubble Sort", command=lambda:window.after(100,bubble_sort,original_x_keys, original_x_values, canvas))
+#buttons
+BubButton = Button(canvas, text="Bubble Sort", command=lambda: start_bubble_sort(original_x_keys, original_x_values, canvas))
 BubButton.place(x=50, y=50)
 Reset = Button(canvas, text="Reset", command=lambda:window.after(100,reset, canvas))
 Reset.place(x=125, y=50)
+# sorts key and val arrays with selection sort
 def selection_sort(keyArr, valArr, canvas):
     VisualizeArray(valArr, canvas)
     size = len(valArr)
@@ -52,11 +67,13 @@ def selection_sort(keyArr, valArr, canvas):
         valArr[num], valArr[min] = valArr[min], valArr[num]
         VisualizeArray(valArr, canvas)
         window.update_idletasks()
-        window.after(10)
-    
-SelButton = Button(canvas, text="Selection Sort", command=lambda:window.after(100,selection_sort,original_x_keys, original_x_values, canvas))
+        window.after(1)
+
+#select button
+SelButton = Button(canvas, text="Selection Sort", command=lambda: start_selection_sort(original_x_keys, original_x_values, canvas))
 SelButton.place(x=170, y=50)
    
+#visualizes array as rectangles
 def VisualizeArray(arr, canvas):
     canvas.delete("all")
     width = 1366/len(arr)
