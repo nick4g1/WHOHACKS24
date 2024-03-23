@@ -22,7 +22,6 @@ def VisualizeArray(x):
     for element in x:
         rect = canvas.create_rectangle(0 + (width*count),500 - (3*element),width*(count+1),500, fill='black')
         count = count + 1
-VisualizeArray(x)
 
 
 def Bubble(x):
@@ -32,9 +31,13 @@ def Bubble(x):
             if x[i] > x[i + 1]:
                 x[i], x[i + 1] = x[i + 1], x[i]
                 VisualizeArray(x)
-                
+                window.update_idletasks()
+                window.after(100)   
 
-Bubble(x)
+VisualizeArray(x)                      
+window.after(100,Bubble,x)
 window.mainloop()    
+
+
 
 
