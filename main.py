@@ -4,12 +4,13 @@ from input import *
 
 
 #File IO
-readInto(sys.argv[1])
+#readInto(sys.argv[1])
 
 
 #thomas was here
 window = tk.Tk()
-greeting = tk.Label(text="Hello, Tkinter")
+window.geometry("1000x600")
+greeting = tk.Label(text="Algorithm Visualizer")
 greeting.pack()
 window.mainloop()
 
