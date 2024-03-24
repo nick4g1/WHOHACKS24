@@ -2,7 +2,9 @@ import tkinter as tk
 import sys
 from input import *
 from tkinter import *
-
+from tkinter import filedialog
+from image import convertImage
+import os
 
 #File IO
 global x
@@ -59,6 +61,20 @@ BubButton = Button(canvas, text="Bubble Sort", command=lambda: start_bubble_sort
 BubButton.place(x=50, y=50)
 Reset = Button(canvas, text="Reset", command=lambda: start_reset(canvas))
 Reset.place(x=280, y=50)
+
+#uploading a file
+def upload_file():
+    filename = filedialog.askopenfilename(title="Choose File", filetypes=[("Image Files", "*.jpg;*.jpeg;*.png")])
+    if filename:
+        filename = os.path.basename(filename)
+        convertImage(filename, 0.01)
+        x = readInto(sys.argv[1])
+        original_x = dict(x)
+        original_x_keys = list(x.keys())
+        original_x_values = list(x.values())
+uploadButton = tk.Button(canvas, text="Upload File", command=upload_file)
+uploadButton.place(x=400, y=50)
+
 # sorts key and val arrays with selection sort
 def selection_sort(keyArr, valArr, canvas):
     VisualizeArray(valArr, canvas)
