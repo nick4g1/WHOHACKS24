@@ -12,7 +12,6 @@ global original_x, original_x_keys, original_x_values
 original_x = dict(x)
 original_x_keys = list(x.keys())
 original_x_values = list(x.values())
-global after_id
 after_id = None
 #thomas was here
 window = tk.Tk()
@@ -23,8 +22,10 @@ canvas = Canvas(window, width=1366,height=768,bg="teal")
 canvas.pack()
 #start methods for after_id
 def start_bubble_sort(keyArr, valArr, canvas):
+    global after_id
     after_id = window.after(100, bubble_sort, keyArr, valArr, canvas)
 def start_selection_sort(keyArr, valArr, canvas):
+    global after_id
     after_id = window.after(100, selection_sort, keyArr, valArr, canvas)
 def start_reset(canvas):
     reset(canvas)
@@ -42,8 +43,10 @@ def bubble_sort(keyArr, valArr, canvas):
                 window.after(1)
 #resets canvas
 def reset(canvas):
+    global after_id
     if after_id:
         window.after_cancel(after_id)
+        after_id = None
     x = readInto(sys.argv[1])
     original_x = dict(x)
     original_x_keys = list(x.keys())
