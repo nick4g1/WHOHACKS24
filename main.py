@@ -58,7 +58,7 @@ def reset(canvas):
 BubButton = Button(canvas, text="Bubble Sort", command=lambda: start_bubble_sort(original_x_keys, original_x_values, canvas))
 BubButton.place(x=50, y=50)
 Reset = Button(canvas, text="Reset", command=lambda: start_reset(canvas))
-Reset.place(x=125, y=50)
+Reset.place(x=280, y=50)
 # sorts key and val arrays with selection sort
 def selection_sort(keyArr, valArr, canvas):
     VisualizeArray(valArr, canvas)
@@ -76,7 +76,37 @@ def selection_sort(keyArr, valArr, canvas):
 
 #select button
 SelButton = Button(canvas, text="Selection Sort", command=lambda: start_selection_sort(original_x_keys, original_x_values, canvas))
-SelButton.place(x=170, y=50)
+SelButton.place(x=125, y=50)
+
+def partition(keyArr, valueArr, low, high, canvas):
+    VisualizeArray(valueArr, canvas)
+    pivot = keyArr[high]
+    i = low - 1
+    for j in range(low, high):
+        if keyArr[j] <= pivot:
+            i = i + 1
+            keyArr[i], keyArr[j] = keyArr[j], keyArr[i]
+            valueArr[i], valueArr[j] = valueArr[j], valueArr[i]
+            VisualizeArray(valueArr, canvas)
+            window.update_idletasks()
+            window.after(1)
+    keyArr[i + 1], keyArr[high] = keyArr[high], keyArr[i + 1]
+    valueArr[i + 1], valueArr[high] = valueArr[high], valueArr[i + 1]
+    VisualizeArray(valueArr, canvas)
+    window.update_idletasks()
+    window.after(1)
+    return i + 1
+ 
+ 
+def quick_sort(keyArr, valueArr, low, high, canvas):
+    VisualizeArray(valueArr, canvas)
+    if low < high:
+        pi = partition(keyArr, valueArr, low, high, canvas)
+        quick_sort(keyArr, valueArr, low, pi - 1, canvas)
+        quick_sort(keyArr, valueArr, pi + 1, high, canvas)
+        
+QuickButton = Button(canvas, text="Quick Sort", command=lambda:window.after(100,quick_sort,original_x_keys, original_x_values, 0, len(original_x_keys) - 1, canvas))
+QuickButton.place(x=210, y=50)
    
 #visualizes array as rectangles
 def VisualizeArray(arr, canvas):
