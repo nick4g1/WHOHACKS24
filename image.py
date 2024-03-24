@@ -1,5 +1,6 @@
 from PIL import Image
 import numpy as np
+import math
 
 def rgb_to_hex(rgb):
     return '0x{0:02x}{1:02x}{2:02x}'.format(int(rgb[0]), int(rgb[1]), int(rgb[2]))
@@ -10,10 +11,12 @@ def convertImage(im, scale):
     img = Image.open(im)
     arr = np.array(img)
 
-    scale_factor = scale
-    new_width = int(arr.shape[1] * scale_factor)
-    new_height = int(arr.shape[0] * scale_factor)
-    arr = np.array(Image.fromarray(arr).resize((new_width, new_height)))
+    #scale_factor = scale
+    #new_width = int(arr.shape[1] * scale_factor)
+    #new_height = int(arr.shape[0] * scale_factor)
+    scale = round(math.sqrt(scale))
+
+    arr = np.array(Image.fromarray(arr).resize((scale, scale)))
 
 
     reshaped_array = arr.reshape(-1, arr.shape[-1])

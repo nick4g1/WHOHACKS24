@@ -34,6 +34,7 @@ def start_reset(canvas):
     reset(canvas)
 #sorts the key and value arrays
 def bubble_sort(keyArr, valArr, canvas):
+    reset(canvas)
     VisualizeArray(valArr, canvas)
     size = len(valArr)
     for num in range(size - 1):
@@ -50,12 +51,11 @@ def reset(canvas):
     if after_id:
         window.after_cancel(after_id)
         after_id = None
+    convertImage(fileF, scale.get())
     x = readInto(sys.argv[1])
     original_x = dict(x)
     original_x_keys = list(x.keys())
     original_x_values = list(x.values())
-    print(x)
-    print(original_x)
     VisualizeArray(original_x_values,canvas)
 #buttons
 BubButton = Button(canvas, text="Bubble Sort", command=lambda: start_bubble_sort(original_x_keys, original_x_values, canvas))
@@ -65,10 +65,11 @@ Reset.place(x=280, y=50)
 
 #uploading a file
 def upload_file():
-    filename = filedialog.askopenfilename(title="Choose File", filetypes=[("Image Files", "*.jpg;*.jpeg;*.png")])
-    if filename:
-        filename = os.path.basename(filename)
-        convertImage(filename, 0.01)
+    global fileF
+    fileF = filedialog.askopenfilename(title="Choose File", filetypes=[("Image Files", "*.jpg;*.jpeg;*.png")])
+    if fileF:
+        fileF = os.path.basename(fileF)
+        convertImage(fileF, scale.get())
         x = readInto(sys.argv[1])
         original_x = dict(x)
         original_x_keys = list(x.keys())
@@ -76,12 +77,13 @@ def upload_file():
 uploadButton = tk.Button(canvas, text="Upload File", command=upload_file)
 uploadButton.place(x=400, y=50)
 
-scale = Scale( canvas, from_ = 1, to=1300, orient = HORIZONTAL)
+scale = Scale( canvas, from_ = 1, to=1300, orient = HORIZONTAL )
 scale.place(x=500, y=50)
 
 
 # sorts key and val arrays with selection sort
 def selection_sort(keyArr, valArr, canvas):
+    reset(canvas)
     VisualizeArray(valArr, canvas)
     size = len(valArr)
     for num in range(size):
@@ -119,6 +121,7 @@ def partition(keyArr, valueArr, low, high, canvas):
  
  
 def quick_sort(keyArr, valueArr, low, high, canvas):
+    reset(canvas)
     VisualizeArray(valueArr, canvas)
     if low < high:
         pi = partition(keyArr, valueArr, low, high, canvas)
