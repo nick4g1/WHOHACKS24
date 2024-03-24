@@ -8,15 +8,23 @@ def readInto(name):
     if (x):
         y = re.split("\n", reading)
         part = [item.partition(', ') for item in y]
+        #print(part)
         part.pop(len(part) - 1)
-        Dict = {}
         for thing in part:
-            Dict[int(thing[0])] = int(thing[2], 16)
-        data = Dict
-    else:
-        data = [int(item) for item in reading.strip().split('\n')]
-        for thing in data:
-            print(thing)
+            obj = Pair(thing[0], int(thing[2], 16))
+            data.append(obj)
     stuff.close()
+    print(data)
     return data
+
+class Pair(object):
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+    def __repr__(self):
+        return f"<Pair with Key:{self.key} Value:{self.value}>"
+    def getKey(self):
+        return self.key
+    def getValue(self):
+        return self.value
     
