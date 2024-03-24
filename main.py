@@ -77,7 +77,6 @@ def selection_sort(keyArr, valArr, canvas):
 #select button
 SelButton = Button(canvas, text="Selection Sort", command=lambda: start_selection_sort(original_x_keys, original_x_values, canvas))
 SelButton.place(x=125, y=50)
-
 def partition(keyArr, valueArr, low, high, canvas):
     VisualizeArray(valueArr, canvas)
     pivot = keyArr[high]
