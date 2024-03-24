@@ -1,0 +1,12 @@
+/bin/
+*.project
+*.png
+*.jpg
+*.jpeg
+*.uuid
+*.classpath
+~*
+._*
+.TemporaryItems
+.DS_Store
+Thumbs.db
