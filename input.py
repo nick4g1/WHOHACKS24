@@ -11,7 +11,7 @@ def readInto(name):
         #print(part)
         part.pop(len(part) - 1)
         for thing in part:
-            obj = Pair(thing[0], int(thing[2], 16))
+            obj = Pair(int(thing[0]), int(thing[2], 16))
             data.append(obj)
     stuff.close()
     return data
