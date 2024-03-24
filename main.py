@@ -43,7 +43,7 @@ def bubble_sort(keyArr, valArr, canvas):
                 window.after(1)
 #resets canvas
 def reset(canvas):
-    global after_id
+    global after_id, original_x, original_x_keys, original_x_values
     if after_id:
         window.after_cancel(after_id)
         after_id = None
@@ -51,6 +51,8 @@ def reset(canvas):
     original_x = dict(x)
     original_x_keys = list(x.keys())
     original_x_values = list(x.values())
+    print(x)
+    print(original_x)
     VisualizeArray(original_x_values,canvas)
 #buttons
 BubButton = Button(canvas, text="Bubble Sort", command=lambda: start_bubble_sort(original_x_keys, original_x_values, canvas))
