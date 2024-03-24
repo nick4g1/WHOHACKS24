@@ -14,7 +14,6 @@ def readInto(name):
             obj = Pair(thing[0], int(thing[2], 16))
             data.append(obj)
     stuff.close()
-    print(data)
     return data
 
 class Pair(object):

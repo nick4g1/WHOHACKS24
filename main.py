@@ -128,8 +128,6 @@ def VisualizeArray(arr, canvas):
     canvas.delete("all")
     size = len(arr)
     width = round(math.sqrt(size))
-    print(width)
-    print(size)
     for i in range(width):
         for j in range(width):
             index = i * width + j
@@ -137,7 +135,7 @@ def VisualizeArray(arr, canvas):
                 color = hex(arr[index].getValue())
                 color = color[2:].zfill(6)  # Pad with zeros if needed
                 color = '#' + color
-                canvas.create_rectangle(20 + (20 * j), 20 + (i * 20), 20 + 20 * (j + 1), 20 + (20 * (i + 1)), fill=color)
+                canvas.create_rectangle(200 + (20 * j), 200 + (i * 20), 200 + 20 * (j + 1), 200 + (20 * (i + 1)), fill=color)
             window.update_idletasks
 
     #print(arr)
