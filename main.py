@@ -9,6 +9,7 @@ import os
 #File IO
 global x
 x = readInto(sys.argv[1])
+#v1 = IntVar()
 #print(x)
 global original_x, original_x_keys, original_x_values
 original_x = dict(x)
@@ -74,6 +75,10 @@ def upload_file():
         original_x_values = list(x.values())
 uploadButton = tk.Button(canvas, text="Upload File", command=upload_file)
 uploadButton.place(x=400, y=50)
+
+scale = Scale( canvas, from_ = 1, to=1300, orient = HORIZONTAL)
+scale.place(x=500, y=50)
+
 
 # sorts key and val arrays with selection sort
 def selection_sort(keyArr, valArr, canvas):
