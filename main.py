@@ -12,7 +12,6 @@ global original_x, original_x_keys, original_x_values
 original_x = dict(x)
 original_x_keys = list(x.keys())
 original_x_values = list(x.values())
-global after_id
 after_id = None
 #thomas was here
 window = tk.Tk()
@@ -23,8 +22,10 @@ canvas = Canvas(window, width=1366,height=768,bg="teal")
 canvas.pack()
 #start methods for after_id
 def start_bubble_sort(keyArr, valArr, canvas):
+    global after_id
     after_id = window.after(100, bubble_sort, keyArr, valArr, canvas)
 def start_selection_sort(keyArr, valArr, canvas):
+    global after_id
     after_id = window.after(100, selection_sort, keyArr, valArr, canvas)
 def start_reset(canvas):
     reset(canvas)
@@ -42,18 +43,22 @@ def bubble_sort(keyArr, valArr, canvas):
                 window.after(1)
 #resets canvas
 def reset(canvas):
+    global after_id, original_x, original_x_keys, original_x_values
     if after_id:
         window.after_cancel(after_id)
+        after_id = None
     x = readInto(sys.argv[1])
     original_x = dict(x)
     original_x_keys = list(x.keys())
     original_x_values = list(x.values())
+    print(x)
+    print(original_x)
     VisualizeArray(original_x_values,canvas)
 #buttons
 BubButton = Button(canvas, text="Bubble Sort", command=lambda: start_bubble_sort(original_x_keys, original_x_values, canvas))
 BubButton.place(x=50, y=50)
-Reset = Button(canvas, text="Reset", command=lambda:window.after(100,reset, canvas))
-Reset.place(x=125, y=50)
+Reset = Button(canvas, text="Reset", command=lambda: start_reset(canvas))
+Reset.place(x=280, y=50)
 # sorts key and val arrays with selection sort
 def selection_sort(keyArr, valArr, canvas):
     VisualizeArray(valArr, canvas)
@@ -71,7 +76,37 @@ def selection_sort(keyArr, valArr, canvas):
 
 #select button
 SelButton = Button(canvas, text="Selection Sort", command=lambda: start_selection_sort(original_x_keys, original_x_values, canvas))
-SelButton.place(x=170, y=50)
+SelButton.place(x=125, y=50)
+
+def partition(keyArr, valueArr, low, high, canvas):
+    VisualizeArray(valueArr, canvas)
+    pivot = keyArr[high]
+    i = low - 1
+    for j in range(low, high):
+        if keyArr[j] <= pivot:
+            i = i + 1
+            keyArr[i], keyArr[j] = keyArr[j], keyArr[i]
+            valueArr[i], valueArr[j] = valueArr[j], valueArr[i]
+            VisualizeArray(valueArr, canvas)
+            window.update_idletasks()
+            window.after(1)
+    keyArr[i + 1], keyArr[high] = keyArr[high], keyArr[i + 1]
+    valueArr[i + 1], valueArr[high] = valueArr[high], valueArr[i + 1]
+    VisualizeArray(valueArr, canvas)
+    window.update_idletasks()
+    window.after(1)
+    return i + 1
+ 
+ 
+def quick_sort(keyArr, valueArr, low, high, canvas):
+    VisualizeArray(valueArr, canvas)
+    if low < high:
+        pi = partition(keyArr, valueArr, low, high, canvas)
+        quick_sort(keyArr, valueArr, low, pi - 1, canvas)
+        quick_sort(keyArr, valueArr, pi + 1, high, canvas)
+        
+QuickButton = Button(canvas, text="Quick Sort", command=lambda:window.after(100,quick_sort,original_x_keys, original_x_values, 0, len(original_x_keys) - 1, canvas))
+QuickButton.place(x=210, y=50)
    
 #visualizes array as rectangles
 def VisualizeArray(arr, canvas):
