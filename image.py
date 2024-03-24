@@ -7,7 +7,7 @@ arr = np.array(img)
 
 
 
-scale_factor = 0.03
+scale_factor = 0.05
 new_width = int(arr.shape[1] * scale_factor)
 new_height = int(arr.shape[0] * scale_factor)
 arr = np.array(Image.fromarray(arr).resize((new_width, new_height)))
