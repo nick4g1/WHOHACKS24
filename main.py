@@ -116,7 +116,8 @@ def VisualizeArray(arr, canvas):
     #print(arr)
     for val in arr:
         color = hex(val)
-        color = color[2:8]
+        color = color[2:]
+        color = format(val, '06x')
         color = "#" + color
         #print(color)
         rect = canvas.create_rectangle(0 + (width*count),500 - (100),width*(count+1),500, fill=color)
